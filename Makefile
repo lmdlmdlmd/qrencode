@@ -1,11 +1,17 @@
+# Makefile for qrencode library for Lua
+
 LIBNAME= qrencode
-CFLAGS= -std=gnu99 -pedantic -Wall -Wextra -O2 -shared -fPIC
 
-all: so
+LUAEXE= lua
 
-so:	$(LIBNAME).c
-	$(CC) $(CFLAGS) $(LIBNAME).c  -lqrencode -lpng -o $(LIBNAME).so
+ROCKSPEC= $(shell find . -name $(LIBNAME)-*-*.rockspec)
 
-clean:
-	rm -f $(LIBNAME).so 
+all: install
 
+install:
+	luarocks make $(ROCKSPEC)
+
+test: 
+	$(LUAEXE) test/test.lua
+
+.PHONY: all test install

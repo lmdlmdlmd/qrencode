@@ -1,5 +1,5 @@
 
-qr = require("qrencode")
+local qr = require("qrencode")
 
 -- print(qr.encode("is ok?"))
 -- print(qr:encode("is ok?"))
